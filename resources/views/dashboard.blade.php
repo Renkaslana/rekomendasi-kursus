@@ -1,320 +1,271 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="flex items-center">
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-2 rounded-lg mr-3 shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                </svg>
+            </div>
+            <h2 class="font-bold text-2xl text-gray-800 leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+        </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 bg-gradient-to-b from-gray-50 to-gray-100">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if (!$profileComplete)
-                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded-md shadow-sm">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm text-yellow-700">
-                                Profil Anda belum lengkap. Lengkapi profil untuk mendapatkan rekomendasi kursus yang lebih akurat.
-                            </p>
-                            <div class="mt-2">
-                                <div class="flex flex-wrap gap-3">
-                                    @if (!$hasInterests)
-                                        <a href="{{ route('profile.interests') }}" class="inline-flex items-center px-3 py-1.5 border border-yellow-400 text-xs font-medium rounded-full text-yellow-800 bg-yellow-100 hover:bg-yellow-200 transition">
-                                            <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                            </svg>
-                                            Tambahkan Minat
-                                        </a>
-                                    @endif
+            <!-- Welcome Banner -->
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg shadow-lg mb-8 overflow-hidden">
+                <div class="relative px-6 py-8 md:px-10 md:py-12">
+                    <!-- Decorative Elements -->
+                    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                    <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
 
-                                    @if (!$hasAbilities)
-                                        <a href="{{ route('profile.abilities') }}" class="inline-flex items-center px-3 py-1.5 border border-yellow-400 text-xs font-medium rounded-full text-yellow-800 bg-yellow-100 hover:bg-yellow-200 transition">
-                                            <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                            </svg>
-                                            Tambahkan Kemampuan
-                                        </a>
-                                    @endif
+                    <div class="relative z-10">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Selamat Datang di KursusFinder!</h2>
+                        <p class="text-purple-100 mb-6 max-w-3xl">Platform rekomendasi kursus yang disesuaikan dengan minat, kemampuan, dan tujuan karir Anda. Lengkapi profil Anda untuk mendapatkan rekomendasi yang lebih akurat.</p>
 
-                                    @if (!$hasCareerGoals)
-                                        <a href="{{ route('profile.career-goals') }}" class="inline-flex items-center px-3 py-1.5 border border-yellow-400 text-xs font-medium rounded-full text-yellow-800 bg-yellow-100 hover:bg-yellow-200 transition">
-                                            <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                            </svg>
-                                            Tambahkan Tujuan Karir
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            <!-- Stats Overview -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <!-- Total Courses -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-primary-100 text-primary-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-500">Total Kursus</p>
-                            <p class="text-2xl font-semibold text-gray-900">{{ $inProgressCourses->count() + $completedCourses->count() }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Completed Courses -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-green-100 text-green-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-500">Kursus Selesai</p>
-                            <p class="text-2xl font-semibold text-gray-900">{{ $completedCourses->count() }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- In Progress Courses -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-500">Sedang Diikuti</p>
-                            <p class="text-2xl font-semibold text-gray-900">{{ $inProgressCourses->count() }}</p>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="{{ route('profile.interests') }}" class="inline-flex items-center px-4 py-2 bg-white text-purple-700 rounded-md hover:bg-purple-50 transition-colors shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                                <span>Atur Minat</span>
+                            </a>
+                            <a href="{{ route('profile.abilities') }}" class="inline-flex items-center px-4 py-2 bg-white text-purple-700 rounded-md hover:bg-purple-50 transition-colors shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                                <span>Atur Kemampuan</span>
+                            </a>
+                            <a href="{{ route('profile.career-goals') }}" class="inline-flex items-center px-4 py-2 bg-white text-purple-700 rounded-md hover:bg-purple-50 transition-colors shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
+                                <span>Atur Tujuan Karir</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <h3 class="text-lg font-semibold mb-4 flex items-center text-gray-800">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            Kursus yang Sedang Diikuti
-                        </h3>
-
-                        @if ($inProgressCourses->isEmpty())
-                            <div class="text-center py-8">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-lg">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>
-                                <p class="text-gray-500 mb-4">Anda belum mengikuti kursus apapun.</p>
-                                <a href="{{ route('courses.index') }}" class="btn-primary inline-flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                    </svg>
-                                    Jelajahi Kursus
-                                </a>
                             </div>
-                        @else
-                            <div class="space-y-4">
-                                @foreach ($inProgressCourses as $history)
-                                    <div class="border rounded-lg p-4 hover:shadow-md transition">
-                                        <div class="flex items-start">
-                                            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-md flex items-center justify-center text-primary-600">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                                </svg>
-                                            </div>
-                                            <div class="ml-4 flex-1">
-                                                <h4 class="font-medium text-gray-900">{{ $history->course->title }}</h4>
-                                                <div class="flex items-center mt-1 text-sm text-gray-500">
-                                                    <span class="bg-primary-100 text-primary-800 text-xs px-2 py-0.5 rounded-full">{{ $history->course->category->name }}</span>
-                                                    <span class="mx-2">•</span>
-                                                    <span>{{ $history->course->instructor }}</span>
-                                                </div>
-                                                <div class="mt-3 flex justify-between items-center">
-                                                    <a href="{{ route('courses.show', $history->course) }}" class="text-primary-600 hover:text-primary-800 text-sm font-medium flex items-center">
-                                                        <span>Lihat Detail</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                                        </svg>
-                                                    </a>
-                                                    <form method="POST" action="{{ route('courses.complete', $history->course) }}">
-                                                        @csrf
-                                                        <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-green-600 text-xs font-medium rounded-md text-green-700 bg-green-50 hover:bg-green-100 transition">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                                            </svg>
-                                                            Tandai Selesai
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                            <div>
+                                <div class="text-sm font-medium text-gray-500">Total Kursus</div>
+                                <div class="text-2xl font-bold text-gray-800">{{ $totalCourses ?? 120 }}</div>
                             </div>
-                        @endif
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-purple-600 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <h3 class="text-lg font-semibold mb-4 flex items-center text-gray-800">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            Kursus yang Telah Diselesaikan
-                        </h3>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-lg">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-gray-500">Kategori</div>
+                                <div class="text-2xl font-bold text-gray-800">{{ $totalCategories ?? 8 }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                        @if ($completedCourses->isEmpty())
-                            <div class="text-center py-8">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-lg">
+                    <div class="p-6">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <p class="text-gray-500">Anda belum menyelesaikan kursus apapun.</p>
                             </div>
-                        @else
-                            <div class="space-y-4">
-                                @foreach ($completedCourses as $history)
-                                    <div class="border rounded-lg p-4 hover:shadow-md transition">
-                                        <div class="flex items-start">
-                                            <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-md flex items-center justify-center text-green-600">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </div>
-                                            <div class="ml-4 flex-1">
-                                                <h4 class="font-medium text-gray-900">{{ $history->course->title }}</h4>
-                                                <div class="flex items-center mt-1 text-sm text-gray-500">
-                                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">{{ $history->course->category->name }}</span>
-                                                    <span class="mx-2">•</span>
-                                                    <span>Selesai pada: {{ $history->completion_date->format('d M Y') }}</span>
-                                                </div>
-
-                                                @if ($history->rating)
-                                                    <div class="mt-2 flex items-center">
-                                                        <div class="flex items-center">
-                                                            @for ($i = 1; $i <= 5; $i++)
-                                                                <svg class="w-4 h-4 {{ $i <= $history->rating ? 'text-yellow-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                                                </svg>
-                                                            @endfor
-                                                        </div>
-                                                    </div>
-                                                @endif
-
-                                                <div class="mt-3">
-                                                    <a href="{{ route('courses.show', $history->course) }}" class="text-primary-600 hover:text-primary-800 text-sm font-medium flex items-center">
-                                                        <span>Lihat Detail</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                                        </svg>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
+                            <div>
+                                <div class="text-sm font-medium text-gray-500">Profil Lengkap</div>
+                                <div class="text-2xl font-bold text-gray-800">{{ $profileCompleteness ?? '33%' }}</div>
                             </div>
-                        @endif
+                        </div>
+                        <div class="mt-4">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-green-600 h-2 rounded-full" style="width: 33%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-semibold flex items-center text-gray-800">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- Recommendations Section -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 mb-8">
+                <div class="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+                    <div class="px-6 py-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                             </svg>
-                            Rekomendasi Kursus untuk Anda
-                        </h3>
-                        <a href="{{ route('recommendations.index') }}" class="text-primary-600 hover:text-primary-800 text-sm font-medium flex items-center">
-                            <span>Lihat Semua</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
+                            <h3 class="text-lg font-semibold text-gray-800">Rekomendasi Kursus</h3>
+                        </div>
+                        <a href="{{ route('recommendations.index') }}" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">Lihat Semua</a>
                     </div>
-
-                    @if ($profileComplete)
-                        @if ($recommendedCourses->isEmpty())
-                            <div class="text-center py-8">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                </svg>
-                                <p class="text-gray-500">Belum ada rekomendasi kursus untuk Anda. Lengkapi profil atau ikuti beberapa kursus untuk mendapatkan rekomendasi.</p>
-                            </div>
-                        @else
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                @foreach ($recommendedCourses->take(6) as $course)
-                                    <div class="border rounded-lg overflow-hidden hover:shadow-md transition">
-                                        <div class="h-40 bg-gray-200">
-                                            @if ($course->image_url)
-                                                <img src="{{ $course->image_url }}" alt="{{ $course->title }}" class="w-full h-full object-cover">
-                                            @else
-                                                <div class="w-full h-full flex items-center justify-center text-gray-400">
-                                                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                                    </svg>
-                                                </div>
-                                            @endif
+                </div>
+                <div class="p-6">
+                    @if(isset($recommendations) && count($recommendations) > 0)
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            @foreach($recommendations as $course)
+                                <div class="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+                                    <div class="p-4">
+                                        <div class="flex items-center mb-3">
+                                            <div class="bg-indigo-100 p-2 rounded-md mr-3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                            <h4 class="font-medium text-gray-900">{{ $course->title }}</h4>
                                         </div>
-                                        <div class="p-4">
-                                            <div class="flex items-center justify-between mb-2">
-                                                <span class="px-2 py-1 bg-primary-100 text-primary-800 text-xs rounded-full">{{ $course->category->name }}</span>
-                                                <span class="text-xs text-gray-500">{{ $course->duration_hours }} jam</span>
-                                            </div>
-                                            <h3 class="font-medium text-lg mb-1 truncate">{{ $course->title }}</h3>
-                                            <p class="text-sm text-gray-500 mb-2 truncate">{{ $course->instructor }}</p>
-                                            <div class="flex items-center justify-between mt-4">
-                                                <span class="text-primary-600 font-semibold">Rp {{ number_format($course->price, 0, ',', '.') }}</span>
-                                                <a href="{{ route('courses.show', $course) }}" class="btn-primary text-sm py-1 px-3">Detail</a>
-                                            </div>
+                                        <p class="text-sm text-gray-600 mb-3 line-clamp-2">{{ $course->description }}</p>
+                                        <div class="flex justify-between items-center">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                                {{ $course->category->name ?? 'Kategori' }}
+                                            </span>
+                                            <a href="{{ route('courses.show', $course) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">Detail</a>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                        @endif
+                                </div>
+                            @endforeach
+                        </div>
                     @else
-                        <div class="text-center py-8 bg-gray-50 rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                            <p class="text-gray-600 mb-4">Lengkapi profil Anda untuk mendapatkan rekomendasi kursus yang sesuai.</p>
+                        <div class="text-center py-8">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-medium text-gray-900 mb-2">Belum Ada Rekomendasi</h3>
+                            <p class="text-gray-600 max-w-md mx-auto mb-6">Lengkapi profil Anda dengan menambahkan minat, kemampuan, dan tujuan karir untuk mendapatkan rekomendasi kursus yang sesuai.</p>
                             <div class="flex flex-wrap justify-center gap-3">
-                                @if (!$hasInterests)
-                                    <a href="{{ route('profile.interests') }}" class="btn-primary text-sm py-2 px-4">
-                                        Tambahkan Minat
-                                    </a>
-                                @endif
-
-                                @if (!$hasAbilities)
-                                    <a href="{{ route('profile.abilities') }}" class="btn-primary text-sm py-2 px-4">
-                                        Tambahkan Kemampuan
-                                    </a>
-                                @endif
-
-                                @if (!$hasCareerGoals)
-                                    <a href="{{ route('profile.career-goals') }}" class="btn-primary text-sm py-2 px-4">
-                                        Tambahkan Tujuan Karir
-                                    </a>
-                                @endif
+                                <a href="{{ route('profile.interests') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
+                                    <span>Atur Minat</span>
+                                </a>
+                                <a href="{{ route('profile.abilities') }}" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors">
+                                    <span>Atur Kemampuan</span>
+                                </a>
                             </div>
                         </div>
                     @endif
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    <div class="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+                        <div class="px-6 py-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Akses Cepat</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-4">
+                            <a href="{{ route('courses.index') }}" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div class="bg-blue-100 p-2 rounded-md mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Semua Kursus</span>
+                            </a>
+                            <a href="{{ route('profile.edit') }}" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div class="bg-green-100 p-2 rounded-md mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Profil Saya</span>
+                            </a>
+                            <a href="{{ route('recommendations.index') }}" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div class="bg-purple-100 p-2 rounded-md mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Rekomendasi</span>
+                            </a>
+                            <a href="#" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <div class="bg-amber-100 p-2 rounded-md mr-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Bantuan</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    <div class="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+                        <div class="px-6 py-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Kelengkapan Profil</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Minat</span>
+                                    <span class="text-sm font-medium text-gray-700">{{ $interestsCompleteness ?? '0%' }}</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-purple-600 h-2 rounded-full" style="width: {{ $interestsCompleteness ?? '0%' }}"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Kemampuan</span>
+                                    <span class="text-sm font-medium text-gray-700">{{ $abilitiesCompleteness ?? '0%' }}</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-600 h-2 rounded-full" style="width: {{ $abilitiesCompleteness ?? '0%' }}"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Tujuan Karir</span>
+                                    <span class="text-sm font-medium text-gray-700">{{ $careerGoalsCompleteness ?? '0%' }}</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-600 h-2 rounded-full" style="width: {{ $careerGoalsCompleteness ?? '0%' }}"></div>
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <a href="{{ route('profile.edit') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                    <span>Lengkapi Profil</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

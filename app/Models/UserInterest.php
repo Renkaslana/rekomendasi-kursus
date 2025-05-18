@@ -4,20 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserInterest extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'category_id', 'interest_level'];
+    // Kolom yang bisa diisi
+    protected $fillable = [
+        'user_id',
+        'category_id',  // Tambahkan ini
+        'interest_level' // Tambahkan ini (skala 1-10)
+    ];
 
-    public function user(): BelongsTo
+    // Relasi ke user
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function category(): BelongsTo
+    // Relasi ke category (tambahkan ini)
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }

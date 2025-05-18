@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach ($recommendedCourses as $course)
+                        @forelse ($recommendedCourses ?? [] as $course)
                             <div class="border rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
                                 <div class="h-48 bg-gray-200 relative">
                                     @if ($course->image_url)
@@ -27,9 +27,13 @@
                                             </svg>
                                         </div>
                                     @endif
-                                    <div class="absolute top-3 right-3">
-                                        <span class="px-2 py-1 bg-primary-100 text-primary-800 text-xs rounded-full font-medium">{{ $course->category->name }}</span>
-                                    </div>
+                                    @if($course->category)
+                                        <div class="absolute top-3 right-3">
+                                            <span class="px-2 py-1 bg-primary-100 text-primary-800 text-xs rounded-full font-medium">
+                                                {{ $course->category->name }}
+                                            </span>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="p-5">
                                     <div class="flex items-center justify-between mb-2">
@@ -61,7 +65,20 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="col-span-full text-center py-12">
+                                <div class="text-gray-400 mb-4">
+                                    <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="text-lg font-medium text-gray-700">Belum ada rekomendasi yang tersedia</h4>
+                                <p class="text-gray-500 mt-2">Silakan lengkapi profil minat dan kemampuan Anda terlebih dahulu</p>
+                                <a href="{{ route('profile.interests') }}" class="mt-4 inline-flex items-center px-4 py-2 bg-primary-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-primary-700 active:bg-primary-900 focus:outline-none focus:border-primary-900 focus:ring focus:ring-primary-300 disabled:opacity-25 transition">
+                                    Lengkapi Profil
+                                </a>
+                            </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -109,4 +126,21 @@
                                 <span class="text-gray-700">Melengkapi profil minat, kemampuan, dan tujuan karir Anda</span>
                             </li>
                             <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-gray-700">Memberikan rating untuk kursus yang sudah Anda ikuti</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-gray-700">Memperbarui profil secara berkala</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

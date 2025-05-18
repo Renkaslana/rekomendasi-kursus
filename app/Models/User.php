@@ -28,11 +28,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Pilih salah satu dari dua dibawah ini:
+
+    // Opsi 1 (Dengan Type-Hint - Lebih Baik)
     public function interests(): HasMany
     {
         return $this->hasMany(UserInterest::class);
     }
-
     public function abilities(): HasMany
     {
         return $this->hasMany(UserAbility::class);
